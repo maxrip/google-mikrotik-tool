@@ -9,7 +9,7 @@ echo '/ip firewall address-list' > list
 <xsl:value-of select="@handle"/>
 <xsl:text>"
 </xsl:text>
-<xsl:text>curl  --fail -s  http://whois.arin.net/rest/org/</xsl:text><xsl:value-of select="@handle"/><xsl:text>/nets | xsltproc template.xsl "/dev/stdin" >> list
+<xsl:text>curl  --fail -s  http://whois.arin.net/rest/org/</xsl:text><xsl:value-of select="@handle"/><xsl:text>/nets | xsltproc templateIpRange.xsl "/dev/stdin" | xargs -I {} ipcalc {} | grep -v deaggregate | awk '{print "add address="$0"  list=VPN";}' >> list
 </xsl:text>
 </xsl:for-each>
 </xsl:template>

@@ -5,11 +5,9 @@
     <xsl:template match="/">
 	<xsl:for-each select="x:nets/x:netRef">
 	    <xsl:if test="substring(@handle,1,4) != 'NET6'">
-		<xsl:text>add address=</xsl:text>
 		<xsl:value-of select="@startAddress"/>
 		<xsl:text>-</xsl:text>
 		<xsl:value-of select="@endAddress"/>
-		<xsl:text> list=VPN</xsl:text>
 		<xsl:text>&#xA;</xsl:text>
 	    </xsl:if>
 	</xsl:for-each>
